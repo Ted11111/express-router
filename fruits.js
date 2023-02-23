@@ -30,4 +30,21 @@ router.get("/:id", (req, res) => {
     res.json(fruit)
 })
 
+router.use(express.json())
+router.post("/", (req, res) => {
+    const userInfo = req.body
+    fruits.push(userInfo)
+    res.json(fruits)
+})
+router.put("/:id", (req, res) => {
+    const userInfo = req.body
+    fruits[req.params.id - 1] = userInfo
+    res.json(fruits)
+})
+router.delete("/:id", (req, res) => {
+    fruits.splice(req.params.id - 1, 1)
+    res.json(fruits)
+})
+
+
 module.exports = router
